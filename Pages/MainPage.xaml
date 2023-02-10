@@ -1,8 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <pages1:BaseAppPage x:TypeArguments="viewModels:MainViewModel" xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                     xmlns:sampleExpander="clr-namespace:MauiSampleExpander"
                     xmlns:pages1="clr-namespace:MauiSampleExpander.Pages"
                     xmlns:viewModels="clr-namespace:MauiSampleExpander.ViewModels"
@@ -13,29 +12,24 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            BindableLayout.ItemsSource="{Binding ExpandableHeaders}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="sampleExpander:HeaderItem">
-                    <mct:Expander>
-                        <mct:Expander.Header>
-                            <Label Text="{Binding Title}"
-                                   FontSize="16"/>
-                        </mct:Expander.Header>
-                        <mct:Expander.Content>
-                            <VerticalStackLayout BackgroundColor="LightGray">
-                                <Label Text="Item 1" />
-                                <Label Text="Item 2" />
-                                <Label Text="Item 3" />
-                                <Label Text="Item 4" />
-                                <Label Text="Item 5" />
-                            </VerticalStackLayout>
-                        </mct:Expander.Content>
-                    </mct:Expander>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+        <VerticalStackLayout BackgroundColor="Red">
+            <Button Text="Add"
+                    Command="{Binding AddItemCommand}"
+                    WidthRequest="100"
+                    Margin="10" />
+
+            <VerticalStackLayout
+                BackgroundColor="Yellow"
+                Spacing="25"
+                Padding="30,0"
+                BindableLayout.ItemsSource="{Binding Items, Mode=TwoWay}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="sampleExpander:Item">
+                        <Label Text="{Binding Label}"
+                               FontSize="16" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
